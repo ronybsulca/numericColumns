@@ -1,4 +1,5 @@
 [![Travis-CI Build Status](https://travis-ci.org/ronybsulca/numericColumns.svg?branch=master)](https://travis-ci.org/ronybsulca/numericColumns)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ronybsulca/numericColumns?branch=master&svg=true)](https://ci.appveyor.com/project/ronybsulca/numericColumns)
 
 # numericColumns
 
