@@ -14,7 +14,7 @@ such as "1", "3.4", "-76", etc.
 If `with_bool` is set to TRUE, `check_numeric_object` assumes booleans
 can also have an equivalent numeric form (being 1 and 0).
 
-### Examples:
+#### Examples:
 
 Any number, even in string form, will pass the test. Objects like factors, string words, or Booleans will fail.
 
@@ -39,7 +39,7 @@ character form, such as "1", "3.4", "-76", etc.
 If `with_bool` is set to TRUE, `check_numeric_list` assumes booleans
 can also have an equivalent numeric form (being 1 and 0), and returns TRUE if it detects a boolean `lst`.
 
-### Examples
+#### Examples
 
 `check_numeric_list` will return `TRUE` if all of the elements of `lst` are numeric or have a numeric equivalent.
 If there exists at least one element who fails the test (such as a word, factor, or boolean), the function will return `FALSE`.
@@ -74,7 +74,7 @@ The following arguments only apply when `isCSV` is `TRUE`: `row_names` specifies
 
 An additional `header` argument is available to read CSV files with their headers. Default is `TRUE`.
 
-### Examples:
+#### Examples:
 
 ```{r, results='asis', eval=FALSE}
 extract_numeric_columns(mtcars)
