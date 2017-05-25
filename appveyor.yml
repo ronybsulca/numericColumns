@@ -22,7 +22,9 @@ on_failure:
   - 7z a failure.zip *.Rcheck\*
   - appveyor PushArtifact failure.zip
 
-WARNINGS_ARE_ERRORS:
+environment:
+  global:
+    WARNINGS_ARE_ERRORS:
 
 artifacts:
   - path: '*.Rcheck\**\*.log'
@@ -42,4 +44,3 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Bits
-
