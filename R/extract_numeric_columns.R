@@ -19,6 +19,8 @@
 #' @param header bool. Same Parameters as that in \code{read.csv}. Specifies if the CSV being read contains
 #'               headers in the first row. \code{TRUE} by default.
 #'
+#' @importFrom utils read.csv
+#'
 #' @return This function returns a Data Frame object, with row names given based on the \code{row_names} argument.
 #'         It includes all the columns of the given dataset whose elements are all numeric or have
 #'         a meaningful numerical equivalent.
