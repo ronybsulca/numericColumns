@@ -1,6 +1,6 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
+WARNINGS_ARE_ERRORS: false
 sudo: false
 cache: packages
-WARNINGS_ARE_ERRORS: false
