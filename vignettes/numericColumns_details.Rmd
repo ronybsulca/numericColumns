@@ -1,0 +1,100 @@
+---
+title: "NumericColumns Details"
+author: "Rony Sulca"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The package `numericColumns` is built to ease the selection of numeric columns, or columns with all elements
+having numeric equivalents, from datasets in data frame, data table, or CSV formats. This is meant to shorten
+the time it takes to subset datasets to their numerical columns in order to quickly apply numerical-based models.
+
+
+## check_numeric_object
+
+`check_numeric_object` asseses if an `object` can be a numeric value. It returns `TRUE`
+if the `object` is `numeric` or if it detects numeric values in character form,
+such as "1", "3.4", "-76", etc.
+If `with_bool` is set to TRUE, `check_numeric_object` assumes booleans
+can also have an equivalent numeric form (being 1 and 0).
+
+### Examples:
+
+Any number, even in string form, will pass the test. Objects like factors, string words, or Booleans will fail.
+
+```{r, results='asis', eval=FALSE}
+check_numeric_object(1) # [1] True
+check_numeric_object("-2.7") # [1] TRUE
+check_numeric_object("bacon1") # [1] FALSE
+```
+
+With the `with_bool` argument set to TRUE, booleans will also pass the test.
+
+```{r, results='asis', eval=FALSE}
+check_numeric_object(TRUE) # [1] False
+check_numeric_object(TRUE, with_bool = TRUE) # [1] TRUE
+```
+
+## check_numeric_list
+
+`check_numeric_list` checks if all of the elements in the `lst` can be a numeric value. It
+returns `TRUE` if all of the elements of `lst` are `numeric` or are numbers in 
+character form, such as "1", "3.4", "-76", etc.
+If `with_bool` is set to TRUE, `check_numeric_list` assumes booleans
+can also have an equivalent numeric form (being 1 and 0), and returns TRUE if it detects a boolean `lst`.
+
+### Examples
+
+`check_numeric_list` will return `TRUE` if all of the elements of `lst` are numeric or have a numeric equivalent.
+If there exists at least one element who fails the test (such as a word, factor, or boolean), the function will return `FALSE`.
+
+```{r, results='asis', eval=FALSE}
+check_numeric_list(c(1,2,-5,6.7)) # [1] TRUE
+check_numeric_list(c("-2.7", 7, 9, -5, "9.8")) # [1] TRUE
+check_numeric_list(list("-2.7", 7, 9, -5, "9.8")) # [1] TRUE
+check_numeric_list(c("1","3", -5, "bacon")) # [1] FALSE
+```
+
+As with `check_numeric_object`, `with_bool` allows for boolean vector or lists to pass the test. Note: We refer
+to boolean vectors here because, when booleans are part of an atomic list with other numbers, they will be coerced
+to their numeric equivalent, similarly if the atomic list is a character vector.
+
+```{r, results='asis', eval=FALSE}
+check_numeric_list(c(TRUE,TRUE, FALSE)) # [1] FALSE
+check_numeric_list(c(TRUE,TRUE, FALSE),with_bool = T) # [1] TRUE
+```
+
+## extract_numeric_columns
+
+This function returns all of the columns of the given `dataset` whose values are numeric or have a
+meaningful numerical equivalent. If `isCSV` is `TRUE`, then `dataset` is taken as a string
+depicting the name of a CSV file. `with_bool` specifies if booleans are considered numeric.
+
+The `column` argument is given to bypass which arguments the test is applied to. Columns that fail the test will
+still be returned with the rest, but with their entire values converted to `NA`. By default, this argument is 
+`FALSE`, the test is applied to all the columns, and only the passing ones are returned.
+
+The following arguments only apply when `isCSV` is `TRUE`: `row_names` specifies if the CSV file must be read with row names. It can take as values `TRUE`, which will set the first column as row names, or a numerical value, which will be selected as the column index for the row names. Note: the column selected as row names must not include duplicates.
+
+An additional `header` argument is available to read CSV files with their headers. Default is `TRUE`.
+
+### Examples:
+
+```{r, results='asis', eval=FALSE}
+extract_numeric_columns(mtcars)
+extract_numeric_columns("test_data_1.csv", isCSV = TRUE)
+extract_numeric_columns("test_data_2.csv", isCSV = TRUE, row_names = TRUE, with_bool = TRUE)
+```
+
+The following will return the columns "mpg", and "cyl" which pass the test, as well as the column
+"names" which will be coerced to NA's for failing the numeric test.
+```{r, results='asis', eval=FALSE}
+temp = mtcars
+temp$names = row.names(temp)
+
+extract_numeric_columns(temp, columns = c("mpg", "cyl", "names"))
+```
