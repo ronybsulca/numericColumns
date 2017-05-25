@@ -1,3 +1,5 @@
+[![Travis-CI Build Status](https://travis-ci.org/ronybsulca/numericColumns.svg?branch=master)](https://travis-ci.org/ronybsulca/numericColumns)
+
 # numericColumns
 
 
