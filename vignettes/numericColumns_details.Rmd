@@ -1,7 +1,7 @@
 ---
 title: "NumericColumns Details"
 author: "Rony Sulca"
-date: "`r Sys.Date()`"
+date: "05/25/2017"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
