@@ -22,15 +22,15 @@ can also have an equivalent numeric form (being 1 and 0).
 Any number, even in string form, will pass the test. Objects like factors, string words, or Booleans will fail.
 
 ```{r, results='asis', eval=FALSE}
-check_numeric_object(1) # [1] True
+check_numeric_object(1) # [1] TRUE
 check_numeric_object("-2.7") # [1] TRUE
 check_numeric_object("bacon1") # [1] FALSE
 ```
 
-With the `with_bool` argument set to TRUE, booleans will also pass the test.
+With the `with_bool` argument set to `TRUE`, booleans will also pass the test.
 
 ```{r, results='asis', eval=FALSE}
-check_numeric_object(TRUE) # [1] False
+check_numeric_object(TRUE) # [1] FALSE
 check_numeric_object(TRUE, with_bool = TRUE) # [1] TRUE
 ```
 
@@ -40,7 +40,7 @@ check_numeric_object(TRUE, with_bool = TRUE) # [1] TRUE
 returns `TRUE` if all of the elements of `lst` are `numeric` or are numbers in 
 character form, such as "1", "3.4", "-76", etc.
 If `with_bool` is set to TRUE, `check_numeric_list` assumes booleans
-can also have an equivalent numeric form (being 1 and 0), and returns TRUE if it detects a boolean `lst`.
+can also have an equivalent numeric form (being 1 and 0), and returns `TRUE` if it detects a boolean `lst`.
 
 #### Examples
 
