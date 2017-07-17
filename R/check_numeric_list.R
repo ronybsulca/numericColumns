@@ -37,7 +37,7 @@
 
 check_numeric_list = function(lst, with_bool = FALSE){
   ## Applies check_numeric_object to all elemnts in lst
-  ## Returns whether all elements passes the test
+  ## Returns whether all elements passes the test.
   isNumeric = suppressWarnings(all(lapply(lst, check_numeric_object, with_bool = with_bool)))
   return(isNumeric)
 }
